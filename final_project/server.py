@@ -3,23 +3,23 @@ from flask import Flask, render_template, request
 import json
 import machinetranslation
 
-app = Flask("Web Translator", template_folder="templates")
+app = Flask("Web Translator")
 
 
 @app.route("/englishToFrench")
 def englishToFrench():
     textToTranslate = request.args.get("textToTranslate")
     # Write your code here
-    french_translation = englishToFrench(textToTranslate)
-    return f"Translated text to French SUCCESS\nEnglish: {textToTranslate}\nFrench: {french_translation}"
+    french_translation = machinetranslation.translator.english_to_french(textToTranslate)
+    return f"Translated to French successfully: {french_translation}"
 
 
 @app.route("/frenchToEnglish")
 def frenchToEnglish():
     textToTranslate = request.args.get("textToTranslate")
     # Write your code here
-    english_translation = frenchToEnglish(textToTranslate)
-    return f"Translated text to English SUCCESS\nFrench: {textToTranslate}\nEnglish: {english_translation}"
+    english_translation = machinetranslation.translator.french_to_english(textToTranslate)
+    return f"Translated to English successfully: {english_translation}"
 
 
 @app.route("/")
